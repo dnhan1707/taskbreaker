@@ -1,27 +1,39 @@
 import { useEffect, useState } from "react";
+import user_prompt from "./prompt.js";
 
 function HomePage() {
     const [result, setResult] = useState("");
 
     const fetchKindo = async () => {
         try {
-            const response = await fetch("/kindo", {
-                method: "GET",
+            const API_KEY = "7a488c20-bf18-47e7-b5b1-79706bf8b572-ce792aa4d58109b9"; // Your API key
+            const BASE_URL = 'https://llm.kindo.ai/v1/chat/completions'; // Kindo API URL
+
+            const prompt = user_prompt("Build a task managing web app using React in a week");
+
+            const data = {
+                model: "azure/gpt-4o",
+                messages: [{ role: "user", content: prompt }],
+            };
+
+            const response = await fetch(BASE_URL, {
+                method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    'api-key': API_KEY,
+                    'Content-Type': 'application/json',
                 },
+                body: JSON.stringify(data), // Stringify the data
             });
 
-            // Check if the response is ok (status in the range 200-299)
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
-            const data = await response.json(); // Parse JSON from the response
-            setResult(data); // Update the state with the fetched data
+            const responseData = await response.json();
+            setResult(responseData.choices[0].message.content);
         } catch (error) {
             console.error('Error fetching data:', error);
-            setResult("Error fetching data"); // Optionally handle error state
+            setResult("Error fetching data");
         }
     };
 
@@ -32,8 +44,10 @@ function HomePage() {
     return (
         <>
             <h1>Hello</h1>
-            <p>{result}</p>
-        </>
+            <div>
+               {result ? <p>{result}</p> : <p>Loading...</p>}
+           </div>
+            </>
     );
 }
 
