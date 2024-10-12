@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Dashboard from './components/Dashboard.js';
 
 function HomePage() {
     const [result, setResult] = useState("");
@@ -26,13 +27,14 @@ function HomePage() {
     };
 
     useEffect(() => {
-        fetchKindo(); // Call the async function inside useEffect
+        fetchKindo(); 
     }, []);
 
     return (
         <>
             <h1>Hello</h1>
             <p>{result}</p>
+            <Dashboard/>
         </>
     );
 }
