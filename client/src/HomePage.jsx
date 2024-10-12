@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Dashboard from './components/Dashboard.js';
 import user_prompt from "./prompt.js";
 
 function HomePage() {
@@ -38,16 +39,16 @@ function HomePage() {
     };
 
     useEffect(() => {
-        fetchKindo(); // Call the async function inside useEffect
+        fetchKindo(); 
     }, []);
 
     return (
         <>
             <h1>Hello</h1>
-            <div>
-               {result ? <p>{result}</p> : <p>Loading...</p>}
-           </div>
-            </>
+            <p>{result}</p>
+            <Dashboard/>
+        </>
+
     );
 }
 
