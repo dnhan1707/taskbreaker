@@ -57,6 +57,15 @@ const DashboardBento = ({name, content, size}) => {
             </div>
         );
     }
+
+    if(size == "normalTasks"){
+        return (
+            <div className={styles.dashboardBentoNormalTasks}>
+                <h3 className={styles.name}>{name}</h3>
+                {content}
+            </div>
+        );
+    }
     
 };
 

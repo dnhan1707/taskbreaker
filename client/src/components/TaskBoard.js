@@ -52,7 +52,7 @@ function TaskBoard({submitIsClick, title}) {
             <DashboardBento
                 name="Project"
                 content={<div className={styles.projectContainer}>
-                    <div className={styles.projectNameContainer}>
+                    {(title.length > 0) && (<div className={styles.projectNameContainer}>
                         <p className={styles.projectName}>{title}</p>
                         <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
                             <defs>
@@ -68,7 +68,7 @@ function TaskBoard({submitIsClick, title}) {
                             <path fill="url(#linearGradient)" d="m87.184 76.68-3.5273-1.2734c-3.0508-1.1016-5.4297-3.4805-6.5312-6.5312l-1.2734-3.5273c-0.49609-1.3789-1.8164-2.3047-3.2812-2.3047-1.4688 0-2.7891 0.92969-3.2812 2.3047l-1.2734 3.5273c-1.1016 3.0547-3.4805 5.4336-6.5312 6.5312l-3.5234 1.2695c-1.3789 0.49219-2.3047 1.8125-2.3086 3.2734-0.003906 1.4609 0.91797 2.7852 2.3047 3.2891l3.5273 1.2734c3.0547 1.1016 5.4336 3.4766 6.5312 6.5312l1.2695 3.5234c0.50391 1.3789 1.8203 2.3086 3.2891 2.3086s2.7891-0.92969 3.2812-2.3047l1.2734-3.5273c1.1016-3.0508 3.4805-5.4297 6.5312-6.5312l3.543-1.2734c1.3711-0.50391 2.293-1.8203 2.2891-3.2852 0-1.4648-0.93359-2.7773-2.3086-3.2734zm-14.609 9.3984c-1.4805-2.5391-3.5859-4.6406-6.1172-6.1172 2.5352-1.4805 4.6406-3.5859 6.1172-6.1172 1.4805 2.5352 3.5859 4.6406 6.1172 6.1172-2.5312 1.4805-4.6367 3.582-6.1172 6.1172z"/>
                             </g>
                         </svg>
-                    </div>
+                    </div>)}
 
 
                     <ProgressBar/>
@@ -123,7 +123,11 @@ function TaskBoard({submitIsClick, title}) {
             ))}
             
             {/* If data is empty after fetching, display a message */}
-            {!loading && Object.keys(data).length === 0 && <p>No tasks available yet.</p>}
+            {!loading && Object.keys(data).length === 0 && <DashboardBento 
+                name="Tasks"
+                content={<div><p className={styles.tasksText}>No tasks available yet.</p></div>}
+                size="normalTasks"
+            />}
         </div>
     );
 }
