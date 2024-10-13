@@ -5,6 +5,8 @@ import DashboardBento from './DashboardBento.js';
 import loadingGif from '../images/loading.gif';
 import EditUser from './EditUser.js';
 import TaskBoard from './TaskBoard.js';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const Dashboard = () => {
     const [textInput, setTextInput] = useState("");
@@ -17,6 +19,7 @@ const Dashboard = () => {
     const [editedTasks, setEditedTasks] = useState({});
     const [submitClicked, setSubmitClicked] = useState(false);
     const [title, setTitle] = useState("");
+    
 
     const fetchKindo = async (user_prompt_text) => {
         console.log("Prompt: ", user_prompt_text);
@@ -280,7 +283,7 @@ const Dashboard = () => {
 
                 </div>
 
-                <TaskBoard submitIsClick={submitClicked} title={title} />
+                <TaskBoard submitIsClick={submitClicked} title={title}/>
             </div>
 
         </div>
