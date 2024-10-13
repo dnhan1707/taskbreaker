@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './PromptedUser.module.css';
 
 const PromptedUser = ({name, tasks}) => {
@@ -22,8 +22,20 @@ const PromptedUser = ({name, tasks}) => {
             output = " | " + daysDifference + " days";
         }
 
-        return output;
+        return daysDifference;
     };
+
+    const [estimatedTime, setEstimatedTime] = useState(0);
+
+    useEffect(() => {
+        let currentEstimatedTime = 0;
+
+        for(const task of tasks){
+            currentEstimatedTime += calculateDaysBetween(task.start_day, task.end_day);
+        }
+
+        setEstimatedTime(currentEstimatedTime / 2);
+    }, [tasks]);
 
     return (
         <div className={styles.promptedUser}>
@@ -31,11 +43,13 @@ const PromptedUser = ({name, tasks}) => {
             <ol>
                 {tasks.map((task, index) => (
                     <li key={index} className={styles.task}>
-                        <p>{task.task} {calculateDaysBetween(task.start_day, task.end_day)}</p>
+                        <p>{task.task}</p>
                     </li>
                 ))}
             </ol>
+            <p className={styles.estimateAI}>Estimated completion: {estimatedTime} day{estimatedTime !== 1 ? 's' : ''}</p>
         </div>
+
     );
 };
 

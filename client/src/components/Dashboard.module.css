@@ -2,17 +2,33 @@
     padding-inline: 50px;
 }
 
+.dashboardContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 25px
+}
+
+.dashboard h2 {
+    margin-block: 30px;
+}
+
 .searchContainer {
     position: relative;
     width: 100%;
 }
 
+.searchBar::placeholder {
+    color: #EEE;
+    opacity: 1;
+}
+
 .searchBar {
+    color: white;
     padding: 15px;
     border-radius: 25px;
     width: 365px;
     border: none;
-    background-color: #e1e1e1;
+    background: linear-gradient(to right, #8ca7de, #ae93d8);
     margin-left: 20px;
 }
 
@@ -130,7 +146,7 @@
 
 .pulsating {
     font-size: 13px;
-    color: #777;
+    color: #fff;
     animation: pulse 3s infinite ease-in-out;
 }
 

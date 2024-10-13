@@ -6,8 +6,37 @@
     margin-bottom: 30px;
 }
 
+.dashboardBentoNormalAI {
+    width: 440px;
+    border-radius: 25px;
+    padding-block: 20px;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #798cd1, #a886dc);
+}
+
+.dashboardBentoTrello {
+    width: 385px;
+    height: 360px;
+    border-radius: 25px;
+    border: solid #DDD 1px;
+    padding-block: 20px;
+    margin-bottom: 30px;
+}
+
+.headingContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.dashboardBentoNormalAI h3 {
+    color: white;
+}
+
 .dashboardBentoWide {
-    width: 880px;
+    width: 800px;
     border-radius: 25px;
     border: solid #DDD 1px;
     padding-block: 20px;
