@@ -46,32 +46,6 @@ const Dashboard = () => {
 
     };
 
-    const fetchTasks = async (TasksData) => {
-        try {
-            
-            const response = await fetch("http://localhost:8080/tasks", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(TasksData), // Stringify the data
-            });
-
-            console.log("what happaning", response);
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            // const responseData = await response.json();
-
-            console.log("checkkk", response.body);
-
-        } catch (error) {
-            console.error('Error send tasks:', error);
-        }
-    };
-
 
     function submitPrompt(){
         if(!loading && textInput.trim() !== ''){
@@ -201,7 +175,7 @@ const Dashboard = () => {
                                     <path d="m5.056 15.04c.629.622 1.658.567 2.217-.119l10.17-12.476c.523-.642.427-1.587-.215-2.11-.642-.523-1.587-.427-2.11.215l-9.111 11.208-3.453-3.41c-.589-.583-1.539-.577-2.121.012-.583.589-.577 1.539.012 2.121l4.611 4.56" fill="#000"/>
                                     </g>
                                 </svg>
-                            </div>)
+                            </div>)}
                         </div>)}
                     </div>
                 </div>  
