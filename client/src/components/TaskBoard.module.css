@@ -133,3 +133,9 @@
     visibility: visible;
     opacity: 1;
 }
+
+.tasksText {
+    padding-inline: 20px;
+    font-size: 14px;
+    color: #777;
+}

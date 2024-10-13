@@ -36,13 +36,8 @@ const Dashboard = () => {
 
             const responseData = await response.json();
             let parsedData = JSON.parse(responseData.result);
-            console.log(parsedData);
-            console.log(parsedData.Title);
             
             setTitle(parsedData.Title);
-
-            
-
             delete parsedData.Title;
             setResult(parsedData);
             setLoading(false);

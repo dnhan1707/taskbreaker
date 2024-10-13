@@ -24,6 +24,15 @@
     background-color: white;
 }
 
+.dashboardBentoNormalTasks {
+    width: 250px;
+    height: 290px;
+    border-radius: 25px;
+    border: solid #DDD 1px;
+    padding-block: 20px;
+    margin-bottom: 30px;
+}
+
 .dashboardBentoUltraWide {
     width: 100%;
     height: max-content;
