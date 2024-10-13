@@ -26,8 +26,8 @@ app.use(express.json()); // To parse JSON request bodies
 // Change the route to POST
 app.post("/kion", async (req, res) => {
   try {
-    const { prompt } = req.body; // Extract 'prompt' from the request body
-    const ai_prompt = await user_prompt(prompt)
+    const { prompt, is_regenerating } = req.body; // Extract 'prompt' from the request body
+    const ai_prompt = await user_prompt(prompt, is_regenerating)
     const data = {
       model: "azure/gpt-4o",
       messages: [{ role: "user", content: ai_prompt }], // Use the prompt received from the client

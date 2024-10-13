@@ -5,18 +5,27 @@ import { getFirestore } from "firebase/firestore";
 import dotenv from 'dotenv';
 
 dotenv.config();
+const FIREBASE_APIKEY = process.env.FIREBASE_APIKEY;
+const AUTH_DOMAIN = process.env.AUTH_DOMAIN;
+const PROJECT_ID = process.env.PROJECT_ID;
+const STORAGE_BUCKET = process.env.PROJECT_ID;
+const MESSAGING_SENDER_ID = process.env.MESSAGING_SENDER_ID;
+const APP_ID = process.env.APP_ID;
+const MEASURE_ID = process.env.MEASURE_ID;
 
-if(!process.env.FIREBASE_APIKEY){ 
+
+if(!FIREBASE_APIKEY){ 
   console.log("NOT FOUND");
- }
+}
+
  const firebaseConfig = {
-  apiKey: "AIzaSyBFs9Ypd68JCh0iNf5Sg28auJH2vwaTKe8",
-  authDomain: "taskbreaker-e6bfa.firebaseapp.com",
-  projectId: "taskbreaker-e6bfa",
-  storageBucket: "taskbreaker-e6bfa.appspot.com",
-  messagingSenderId: "80116200559",
-  appId: "1:80116200559:web:88ab8e8cc5172b6cc5499a",
-  measurementId: "G-E2YH4ZFVJM"
+  apiKey: FIREBASE_APIKEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASURE_ID,
 };
 
 // Initialize Firebase

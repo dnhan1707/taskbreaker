@@ -10,6 +10,7 @@ const Dashboard = () => {
     const [result, setResult] = useState({});
     const [loading, setLoading] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
+    const [regenerateButton, setRegenerateButton] = useState(false);
 
     const fetchKindo = async (user_prompt_text) => {
         setLoading(true);
@@ -20,7 +21,7 @@ const Dashboard = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({prompt: user_prompt_text}), // Stringify the data
+                body: JSON.stringify({prompt: user_prompt_text, is_regenerating: regenerateButton}), // Stringify the data
             });
 
             if (!response.ok) {
@@ -32,6 +33,7 @@ const Dashboard = () => {
             setResult(JSON.parse(responseData.result));
             console.log(responseData.result); // Log to verify structure
             setLoading(false);
+            setRegenerateButton(false);
         } catch (error) {
             console.error('Error fetching data:', error);
             setResult("Error fetching data");
@@ -46,6 +48,12 @@ const Dashboard = () => {
             fetchKindo(currentPrompt);
         }
     };
+
+    function handleRegenerate(){
+        setRegenerateButton(true)
+        fetchKindo(currentPrompt);
+
+    }
 
     return (
         <div className={styles.dashboard}>
@@ -78,7 +86,7 @@ const Dashboard = () => {
                         {showPreview && (<p className={styles.currentPrompt}>"{currentPrompt}"</p>)}
 
                         {showPreview && !loading && (<div className={styles.generatedButtonContainer}>
-                            <div className={styles.generatedButton}>
+                            <div className={styles.generatedButton} onClick={handleRegenerate}>
                                 <span className={`${styles.tooltip} ${styles.tooltipR}`}>Regenerate</span>
                                 <svg className={styles.regenerate} width="32" height="32" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
                                     <g>
