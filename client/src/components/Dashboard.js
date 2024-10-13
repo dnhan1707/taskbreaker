@@ -265,7 +265,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                         }
-                        size="wide"
+                        size="wideEdit"
                     />)}
 
                     <DashboardBento

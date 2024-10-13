@@ -62,6 +62,18 @@
     margin-bottom: 30px;
 }
 
+.dashboardBentoWideEdit {
+    width: 800px;
+    border-radius: 25px;
+    padding-block: 20px;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #798cd1, #a886dc);
+}
+
+.dashboardBentoWideEdit h3 {
+    color: white;
+}
+
 .name {
     margin-top: 0px;
     padding-left: 20px;

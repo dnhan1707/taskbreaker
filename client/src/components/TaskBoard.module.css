@@ -12,6 +12,7 @@
     align-items: center;
     flex-wrap: wrap;
     padding-inline: 20px;
+    margin-top: -12px;
 }
 
 .projectNameContainer {
