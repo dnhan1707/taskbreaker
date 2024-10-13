@@ -115,7 +115,15 @@ const Dashboard = () => {
 
     return (
         <div className={styles.dashboard}>
-            <h2>Dashboard <span className={styles.taskFlowAI}>| TaskFlow AI</span></h2>
+            <div className={styles.navigationContainer}>
+                <h2>Dashboard <span className={styles.taskFlowAI}>| TaskFlow AI</span></h2>
+                <div className={styles.profileImage}>
+                    <svg width="70" height="70" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
+                        <path fill="#ffffff" d="m50 20c-16.539 0-30 13.461-30 30s13.461 30 30 30 30-13.461 30-30-13.461-30-30-30zm0 56c-7.0117 0-13.371-2.7891-18.051-7.3086 4.9688-5.0391 11.172-7.6914 18.051-7.6914s13.078 2.6484 18.051 7.6914c-4.6797 4.5195-11.039 7.3086-18.051 7.3086zm-8-27c0-4.4102 3.5898-8 8-8s8 3.5898 8 8-3.5898 8-8 8-8-3.5898-8-8zm28.711 16.699c-3.7305-3.7383-8.0898-6.3086-12.871-7.6406 2.5391-2.1992 4.1602-5.4414 4.1602-9.0586 0-6.6211-5.3789-12-12-12s-12 5.3789-12 12c0 3.6211 1.6211 6.8594 4.1602 9.0586-4.7812 1.3281-9.1289 3.8984-12.871 7.6406-3.3203-4.3711-5.2891-9.8008-5.2891-15.699 0-14.34 11.66-26 26-26s26 11.66 26 26c0 5.8906-1.9688 11.328-5.2891 15.699z"/>
+                    </svg>
+                </div>
+            </div>
+            
 
             <div className={styles.dashboardContainer}>
                 <div>
@@ -123,7 +131,7 @@ const Dashboard = () => {
                         name="Prompt"
                         content={<div className={styles.searchContainer}>
                             <input
-                                className={styles.searchBar}
+                                className={editButton? styles.searchBarWide: styles.searchBar}
                                 type="text"
                                 placeholder="Type a task"
                                 value={textInput}
@@ -198,7 +206,7 @@ const Dashboard = () => {
                             </div>
                         </div>  
                         }
-                        size="normal"
+                        size={editButton? "wide" : "normal"}
                     />
 
                     {showPreview && !editButton && (<DashboardBento
@@ -253,6 +261,17 @@ const Dashboard = () => {
                         }
                         size="wide"
                     />)}
+
+                    <DashboardBento
+                        name="Overview"
+                        content={<div className={styles.overviewText}>
+                            <p>TaskFlow AI is an innovative task management application designed to streamline project workflows and enhance team collaboration. By leveraging the power of KindoAI, TaskFlow AI automatically breaks down larger tasks into manageable subtasks and intelligently assigns them to team members based on their strengths and availability. This ensures that projects are completed efficiently and effectively, reducing the stress of task management.</p>
+                            <p>Developed during the Cerebral Beach Hackathon held on October 12-13, 2024 in Santa Monica, by Kyle, Jack, and Khant.</p>
+                        </div>  
+                        }
+                        size={editButton? "wide" : "normal"}
+                    />
+
                 </div>
 
                 <TaskBoard submitIsClick={submitClicked} />

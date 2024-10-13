@@ -53,7 +53,7 @@ function TaskBoard({submitIsClick}) {
                 content={<div className={styles.projectContainer}>
                     <div className={styles.projectNameContainer}>
                         <p className={styles.projectName}>Project Title</p>
-                        <svg width="34" height="34" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
+                        <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
                             <defs>
                                 <linearGradient id="linearGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style={{ stopColor: "#a886dc", stopOpacity: 1 }} />

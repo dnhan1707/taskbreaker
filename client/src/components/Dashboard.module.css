@@ -2,9 +2,29 @@
     padding-inline: 50px;
 }
 
+.navigationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .taskFlowAI {
     font-weight: 400;
     color: #777;
+}
+
+.profileImage {
+    background: linear-gradient(to right, #8ca7de, #ae93d8);
+    width: 50px;
+    height: 50px;
+    border-radius: 90px;
+    cursor: pointer;
+}
+
+.profileImage svg {
+    margin-left: -9.5px;
+    margin-top: -5.5px;
 }
 
 .dashboardContainer {
@@ -22,7 +42,8 @@
     width: 100%;
 }
 
-.searchBar::placeholder {
+.searchBar::placeholder,
+.searchBarWide::placeholder {
     color: #EEE;
     opacity: 1;
 }
@@ -32,6 +53,16 @@
     padding: 15px;
     border-radius: 25px;
     width: 365px;
+    border: none;
+    background: linear-gradient(to right, #8ca7de, #ae93d8);
+    margin-left: 20px;
+}
+
+.searchBarWide {
+    color: white;
+    padding: 15px;
+    border-radius: 25px;
+    width: 724px;
     border: none;
     background: linear-gradient(to right, #8ca7de, #ae93d8);
     margin-left: 20px;
@@ -182,4 +213,10 @@
     justify-content: center;
     column-gap: 20px;
     padding-inline: 20px;
+}
+
+.overviewText {
+    padding-inline: 20px;
+    font-size: 14px;
+    color: #777;
 }
