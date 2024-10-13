@@ -34,7 +34,9 @@ const Dashboard = () => {
             const responseData = await response.json();
             console.log(responseData.result);
             setResult(JSON.parse(responseData.result));
-            console.log(responseData.result); // Log to verify structure
+            
+            console.log("checlll", responseData.result); // Log to verify structure
+
             setLoading(false);
             setRegenerateButton(false);
         } catch (error) {
@@ -43,6 +45,33 @@ const Dashboard = () => {
         }
 
     };
+
+    const fetchTasks = async (TasksData) => {
+        try {
+            
+            const response = await fetch("http://localhost:8080/tasks", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(TasksData), // Stringify the data
+            });
+
+            console.log("what happaning", response);
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // const responseData = await response.json();
+
+            console.log("checkkk", response.body);
+
+        } catch (error) {
+            console.error('Error send tasks:', error);
+        }
+    };
+
 
     function submitPrompt(){
         if(!loading && textInput.trim() !== ''){
@@ -110,6 +139,7 @@ const Dashboard = () => {
     function handleSubmit(){
         console.log("RESULT",result);
         setShowPreview(false);
+
         fetchTasks(result);
     }
 
@@ -164,13 +194,14 @@ const Dashboard = () => {
                             </div>)}
 
                             {!editButton && (<div className={styles.generatedButton} onClick={handleSubmit}>
+
                                 <span className={`${styles.tooltip} ${styles.tooltipS}`}>Submit</span>
                                 <svg className={styles.submit} width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20" x="0px" y="0px">
                                     <g fill="none" fill-rule="evenodd">
                                     <path d="m5.056 15.04c.629.622 1.658.567 2.217-.119l10.17-12.476c.523-.642.427-1.587-.215-2.11-.642-.523-1.587-.427-2.11.215l-9.111 11.208-3.453-3.41c-.589-.583-1.539-.577-2.121.012-.583.589-.577 1.539.012 2.121l4.611 4.56" fill="#000"/>
                                     </g>
                                 </svg>
-                            </div>)}
+                            </div>)
                         </div>)}
                     </div>
                 </div>  

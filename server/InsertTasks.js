@@ -1,4 +1,5 @@
 import { doc, setDoc, getDoc } from 'firebase/firestore';
+
 import { db } from './firebase/firebase.js';
 
 // Helper function to check if the task's start date is today
@@ -14,7 +15,7 @@ function isToday(dateString) {
     );
 }
 
-// Main function to insert or update tasks into Firestore
+
 async function insertTasks(tasksByUser) {
     try {
         console.log(tasksByUser); // Log the incoming tasks for debugging
@@ -43,6 +44,7 @@ async function insertTasks(tasksByUser) {
                 // Determine the task status based on the need_help field and the start date
                 let status;
                 if (task.need_help != 'N/A') {
+
                     status = 'Need Help';
                 } else if (isToday(task.start_day)) {
                     status = 'In Progress';
@@ -50,7 +52,6 @@ async function insertTasks(tasksByUser) {
                     status = 'Waiting';
                 }
 
-                // Create a new task object
                 taskData[taskKey] = {
                     end_day: task.end_day,
                     start_day: task.start_day,
