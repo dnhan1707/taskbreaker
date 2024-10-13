@@ -1,4 +1,5 @@
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+
 import { db } from './firebase/firebase.js';
 
 // Helper function to check if the task's start date is today
@@ -14,23 +15,36 @@ function isToday(dateString) {
     );
 }
 
-// Main function to insert tasks into Firestore
+
 async function insertTasks(tasksByUser) {
     try {
         console.log(tasksByUser); // Log the incoming tasks for debugging
 
         for (const [userName, taskList] of Object.entries(tasksByUser)) {
             const userDocRef = doc(db, "user_tasks", userName); // Firestore reference
-            console.log(`Inserting tasks for user: ${userName}`);
 
-            let taskData = {};
+            // Fetch the current document to check if it exists
+            const docSnapshot = await getDoc(userDocRef);
+            let existingFields = [];
+
+            if (docSnapshot.exists()) {
+                // If the document exists, get the current fields
+                existingFields = Object.keys(docSnapshot.data()).filter(key => key.startsWith('task_'));
+            }
+
+            // Determine the next task index
+            const nextTaskIndex = existingFields.length + 1; // +1 because we are adding new tasks
+
+            // Prepare the tasks to be added
+            const taskData = {};
 
             taskList.forEach((task, index) => {
-                const taskKey = `task_${index + 1}`;
+                const taskKey = `task_${nextTaskIndex + index}`; // Generate dynamic task name
 
                 // Determine the task status based on the need_help field and the start date
                 let status;
-                if (task.need_help === 'N/A') {
+                if (task.need_help != 'N/A') {
+
                     status = 'Need Help';
                 } else if (isToday(task.start_day)) {
                     status = 'In Progress';
@@ -47,12 +61,15 @@ async function insertTasks(tasksByUser) {
                 };
             });
 
-            await setDoc(userDocRef, taskData, { merge: true }); // Use merge to avoid overwriting
+            // Update the document with the new tasks
+            await setDoc(userDocRef, taskData, { merge: true });
+
+            console.log(`Added tasks for user: ${userName}`);
         }
 
-        console.log("Tasks inserted successfully.");
+        console.log("Tasks inserted/added successfully.");
     } catch (error) {
-        console.error("Error inserting tasks:", error); // Log any errors
+        console.error("Error inserting/adding tasks:", error); // Log any errors
         throw error;
     }
 }
