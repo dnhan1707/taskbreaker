@@ -12,10 +12,10 @@ const PromptedUser = ({name, tasks}) => {
 
         let output;
 
-        if(daysDifference == 1){
+        if(daysDifference === 1){
             output = " | " + daysDifference + " day";
         }
-        else if(daysDifference == 0){
+        else if(daysDifference === 0){
             output = "";
         }
         else{
