@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from "express";
 import fetch from "node-fetch"; // Import node-fetch
 import cors from 'cors'; // Import CORS
@@ -15,6 +16,8 @@ if (!API_KEY) {
 }
 
 const BASE_URL = 'https://llm.kindo.ai/v1/chat/completions'; // Kindo API URL
+
+dotenv.config();
 
 // Use CORS middleware
 app.use(cors());
