@@ -31,3 +31,83 @@
     margin-left: 3px;
     margin-top: 2px;
 }
+
+.generatedContainer {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.currentPrompt {
+    font-size: 13px;
+    color: #777;
+    margin-left: 25px;
+}
+
+.generatedButtonContainer{
+    
+    margin-right: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+}
+
+.generatedButton {
+    position: relative;
+    cursor: pointer;
+    background-color: #e1e1e1;
+    width: 35px;
+    height: 35px;
+    border-radius: 500px;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #e1e1e1;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 115%; 
+    opacity: 0;
+    transition: opacity 0.6s;
+}
+
+.tooltipR {
+    margin-left: -15px;
+}
+
+.tooltipE {
+    margin-left: 2px;
+}
+
+.tooltipS {
+    margin-left: -6px;
+    
+}
+
+.generatedButton:hover .tooltip {
+    visibility: visible; /* Show the tooltip on hover */
+    opacity: 1; /* Make it visible */
+}
+
+.regenerate {
+    margin-top: 2px;
+}
+
+.edit {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.submit {
+    margin-left: 7px;
+    margin-top: 8px;
+}
