@@ -21,7 +21,8 @@
 
 .progressBarContainer p {
     position: absolute;
+    text-align: right;
     top: -5px;
-    left: -130px;
+    right: 30px;
     color: #777;
 }
