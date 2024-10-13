@@ -20,7 +20,7 @@ async function getMembersListSkill() {
             };
             membersSkills.push(userInfo); // Use push instead of append
         });
-        console.log(membersSkills);
+        // console.log(membersSkills);
         return membersSkills; // Return the populated array
     } catch (error) {
         console.error(error);

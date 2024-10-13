@@ -64,7 +64,7 @@ async function insertTasks(tasksByUser) {
             // Update the document with the new tasks
             await setDoc(userDocRef, taskData, { merge: true });
 
-            console.log(`Added tasks for user: ${userName}`);
+            // console.log(`Added tasks for user: ${userName}`);
         }
 
         console.log("Tasks inserted/added successfully.");

@@ -20,7 +20,7 @@ async function getMembersTasks() {
             });
         });
 
-        console.log(membersTasks); // For debugging, log the populated task object
+        // console.log(membersTasks); // For debugging, log the populated task object
         return membersTasks; // Return the tasks for each member
     } catch (error) {
         console.error('Error fetching member tasks:', error);
