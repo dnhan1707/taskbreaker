@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import styles from './TaskBoard.module.css';
 import DashboardBento from './DashboardBento.js';
 
-function TaskBoard() {
+function TaskBoard({submitIsClick}) {
     const [data, setData] = useState({});  // Initialize data as an empty object
     const [loading, setLoading] = useState(false); // State for handling loading
-
+    
     const fetchMemberTasks = async () => {
-        setLoading(true); // Set loading state to true when the request starts
         try {
+            setLoading(true); // Set loading state to true when the request starts
+
             const response = await fetch("http://localhost:8080/all_tasks", {
                 method: "GET",
                 headers: {
@@ -31,10 +32,9 @@ function TaskBoard() {
             setLoading(false); // Stop loading once the request is finished
         }
     };
-
     useEffect(() => {
         fetchMemberTasks();
-    }, [])
+    }, [submitIsClick])
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);

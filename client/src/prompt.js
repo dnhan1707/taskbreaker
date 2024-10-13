@@ -34,7 +34,7 @@ The output should be an object that has the key as the member name, and the valu
                 "skills": ["Project Management", "Agile Methodologies", "Scrum", "Kanban"],
                 "interests": ["Team leadership", "Process improvement", "Stakeholder engagement"]
             }
-        ]`;
+        ] `;
     return prompt;
 }
 

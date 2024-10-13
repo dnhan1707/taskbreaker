@@ -15,6 +15,7 @@ const Dashboard = () => {
     const [regenerateButton, setRegenerateButton] = useState(false);
     const [editButton, setEditButton] = useState(false);
     const [editedTasks, setEditedTasks] = useState({});
+    const [submitClicked, setSubmitClicked] = useState(false);
 
     const fetchKindo = async (user_prompt_text) => {
         setLoading(true);
@@ -106,6 +107,7 @@ const Dashboard = () => {
     };
 
     function handleSubmit(){
+        setSubmitClicked(true);  // Toggle state to trigger fetch in TaskBoard
         setShowPreview(false);
         setEditButton(false);
         fetchTasks(result);
@@ -253,7 +255,7 @@ const Dashboard = () => {
                     />)}
                 </div>
 
-                <TaskBoard/>
+                <TaskBoard submitIsClick={submitClicked} />
             </div>
 
         </div>

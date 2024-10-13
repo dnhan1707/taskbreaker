@@ -52,6 +52,7 @@ app.post("/kion", async (req, res) => {
 
     const responseData = await response.json();
     const result = responseData.choices[0].message.content; // Extract the response content
+    console.log(result)
 
     res.json({ result }); // Send the result back to the front-end
   } catch (error) {
