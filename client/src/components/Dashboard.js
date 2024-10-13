@@ -16,6 +16,7 @@ const Dashboard = () => {
     const [editButton, setEditButton] = useState(false);
     const [editedTasks, setEditedTasks] = useState({});
     const [submitClicked, setSubmitClicked] = useState(false);
+    const [title, setTitle] = useState("");
 
     const fetchKindo = async (user_prompt_text) => {
         setLoading(true);
@@ -34,7 +35,16 @@ const Dashboard = () => {
             }
 
             const responseData = await response.json();
-            setResult(JSON.parse(responseData.result));
+            let parsedData = JSON.parse(responseData.result);
+            console.log(parsedData);
+            console.log(parsedData.Title);
+            
+            setTitle(parsedData.Title);
+
+            
+
+            delete parsedData.Title;
+            setResult(parsedData);
             setLoading(false);
             setRegenerateButton(false);
         } catch (error) {
@@ -274,7 +284,7 @@ const Dashboard = () => {
 
                 </div>
 
-                <TaskBoard submitIsClick={submitClicked} />
+                <TaskBoard submitIsClick={submitClicked} title={title} />
             </div>
 
         </div>

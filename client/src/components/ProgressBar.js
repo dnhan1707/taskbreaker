@@ -25,7 +25,6 @@ const ProgressBar = () => {
         const responseData = await response.json();
         setData(responseData);  // Update the data state with fetched tasks
         calculatePercentage(responseData);
-        console.log(responseData);
 
     } catch (error) {
         console.error('Error fetching data:', error); // Handle any errors
