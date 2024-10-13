@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './Dashboard.module.css';
-import user_prompt from "../prompt.js";
 import PromptedUser from "./PromptedUser.js";
 
 const Dashboard = () => {
@@ -9,23 +8,12 @@ const Dashboard = () => {
 
     const fetchKindo = async (user_prompt_text) => {
         try {
-            const API_KEY = "7a488c20-bf18-47e7-b5b1-79706bf8b572-ce792aa4d58109b9"; // Your API key
-            const BASE_URL = 'https://llm.kindo.ai/v1/chat/completions'; // Kindo API URL
-
-            const prompt = user_prompt(user_prompt_text);
-
-            const data = {
-                model: "azure/gpt-4o",
-                messages: [{ role: "user", content: prompt }],
-            };
-
-            const response = await fetch(BASE_URL, {
+            const response = await fetch("http://localhost:5000", {
                 method: "POST",
                 headers: {
-                    'api-key': API_KEY,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data), // Stringify the data
+                body: JSON.stringify({prompt: user_prompt_text}), // Stringify the data
             });
 
             if (!response.ok) {
@@ -33,7 +21,8 @@ const Dashboard = () => {
             }
 
             const responseData = await response.json();
-            setResult(JSON.parse(responseData.choices[0].message.content));
+            console.log(responseData.result);
+            setResult(JSON.parse(responseData.result));
         } catch (error) {
             console.error('Error fetching data:', error);
             setResult("Error fetching data");
