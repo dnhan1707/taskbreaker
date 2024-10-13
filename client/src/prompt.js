@@ -5,7 +5,7 @@ function user_prompt(task){
 
 If the team member does not need assistance, the string should be "N/A"
 
-The output should be an object that has the key as the member name, and the value as an array of the task objects. DO NOT GIVE ME AN EXPLANATION JUST GIVE THE OUTPUT AND NOTHING ELSE
+The output should be an object that has the key as the member name, and the value as an array of the task objects. DO NOT GIVE ME AN EXPLANATION JUST GIVE THE OUTPUT AND NOTHING ELSE. Do not wrap the json codes in JSON markers.
 
         Task: ${task}
         Members: [
