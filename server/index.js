@@ -4,6 +4,7 @@ import fetch from "node-fetch"; // Import node-fetch
 import cors from 'cors'; // Import CORS
 // import dotenv from 'dotenv';
 import user_prompt from "./prompt.js";
+import getMembersTasks from './getMembersInfo.js';
 
 dotenv.config();
 
@@ -56,6 +57,20 @@ app.post("/kion", async (req, res) => {
     res.status(500).send('Error making request to Kindo API');
   }
 });
+
+
+app.get("/all_tasks", async (req, res) => {
+  try {
+      const allTasks = await getMembersTasks();
+      console.log(allTasks); // Log to verify data is returned correctly
+      res.json(allTasks); // Send tasks directly as JSON
+  } catch (error) {
+      console.error('Error:', error.message);
+      res.status(500).send('Error fetching tasks from Firestore');
+  }
+});
+
+
 
 app.listen(port, () => {
   console.log("Server is listening on port:", port);
