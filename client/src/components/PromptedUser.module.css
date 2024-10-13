@@ -23,9 +23,10 @@
 
 ol {
     margin-top: -5px;
-    padding-left: 15px;
+    padding-left: 0;
     margin-left: 0;
     color: #777;
+    list-style-type: none;
 }
 
 .task {
@@ -34,7 +35,7 @@ ol {
 }
 
 .task p {
-    margin-block: 0px;
+    margin-block: 6px;
     color: #777;
 }
 
