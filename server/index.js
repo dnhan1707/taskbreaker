@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express from "express";
 import fetch from "node-fetch"; // Import node-fetch
 import cors from 'cors'; // Import CORS
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import user_prompt from "./prompt.js";
 
 dotenv.config();
