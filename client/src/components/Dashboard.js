@@ -13,6 +13,7 @@ const Dashboard = () => {
     const [showPreview, setShowPreview] = useState(false);
     const [regenerateButton, setRegenerateButton] = useState(false);
     const [editButton, setEditButton] = useState(false);
+    const [editedTasks, setEditedTasks] = useState({});
 
     const fetchKindo = async (user_prompt_text) => {
         setLoading(true);
@@ -56,6 +57,60 @@ const Dashboard = () => {
         setRegenerateButton(true);
         fetchKindo(currentPrompt);
 
+    }
+
+    const handleSaveEdit = (name, updatedTasks) => {
+        console.log(`Saving edit for ${name}`);
+        console.log('Updated Tasks:', updatedTasks);
+
+        if (!Array.isArray(updatedTasks)) {
+            console.error(`Error: ${name} should have an array of tasks, but received:`, updatedTasks);
+            return;
+        }
+
+        setEditedTasks((prevEditedTasks) => ({
+            ...prevEditedTasks,
+            [name]: updatedTasks
+        }));
+
+        setResult((prevResult) => ({
+            ...prevResult,
+            [name]: updatedTasks
+        }));
+    };
+
+    
+
+    const fetchTasks = async (TasksData) => {
+        try {
+            
+            const response = await fetch("http://localhost:8080/tasks", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(TasksData), // Stringify the data
+            });
+
+            console.log("what happaning", response);
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // const responseData = await response.json();
+
+            console.log("checkkk", response.body);
+
+        } catch (error) {
+            console.error('Error send tasks:', error);
+        }
+    };
+
+    function handleSubmit(){
+        console.log("RESULT",result);
+        setShowPreview(false);
+        fetchTasks(result);
     }
 
     return (
@@ -108,7 +163,7 @@ const Dashboard = () => {
                                 </svg>
                             </div>)}
 
-                            {!editButton && (<div className={styles.generatedButton}>
+                            {!editButton && (<div className={styles.generatedButton} onClick={handleSubmit}>
                                 <span className={`${styles.tooltip} ${styles.tooltipS}`}>Submit</span>
                                 <svg className={styles.submit} width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20" x="0px" y="0px">
                                     <g fill="none" fill-rule="evenodd">
@@ -145,7 +200,12 @@ const Dashboard = () => {
                 content={<div>
                     <div className={styles.editTasksContainer}>
                         {Object.entries(result).map(([name, tasks]) => (
-                            <EditUser key={name} name={name} tasks={tasks}/>
+                            <EditUser
+                                key={name}
+                                name={name}
+                                tasks={editedTasks[name] || tasks} // This should always be an array
+                                onEdit={handleSaveEdit} // Ensure updatedTasks is an array
+                            />
                         ))}
                     </div>
 
@@ -157,7 +217,7 @@ const Dashboard = () => {
                             </svg>
                         </div>
 
-                        <div className={styles.generatedButton}>
+                        <div className={styles.generatedButton} onClick={handleSubmit}>
                             <span className={`${styles.tooltip} ${styles.tooltipS}`}>Submit</span>
                             <svg className={styles.submit} width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20" x="0px" y="0px">
                                 <g fill="none" fill-rule="evenodd">
