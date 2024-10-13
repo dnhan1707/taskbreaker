@@ -79,8 +79,6 @@ const Dashboard = () => {
         }));
     };
 
-    
-
     const fetchTasks = async (TasksData) => {
         try {
             
@@ -108,9 +106,8 @@ const Dashboard = () => {
     };
 
     function handleSubmit(){
-        console.log("RESULT",result);
         setShowPreview(false);
-
+        setEditButton(false);
         fetchTasks(result);
     }
 
@@ -187,7 +184,7 @@ const Dashboard = () => {
                                         </svg>
                                     </div>)}
 
-                                    {!editButton && (<div className={styles.generatedButton}>
+                                    {!editButton && (<div className={styles.generatedButton} onClick={handleSubmit}>
                                         <span className={`${styles.tooltip} ${styles.tooltipS}`}>Submit</span>
                                         <svg className={styles.submit} width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20" x="0px" y="0px">
                                             <g fill="none" fill-rule="evenodd">
@@ -219,37 +216,17 @@ const Dashboard = () => {
                         size="normal"
                     />)}
 
-            {editButton && (<DashboardBento
-                name="Edit"
-                content={<div>
-                    <div className={styles.editTasksContainer}>
-                        {Object.entries(result).map(([name, tasks]) => (
-                            <EditUser
-                                key={name}
-                                name={name}
-                                tasks={editedTasks[name] || tasks} // This should always be an array
-                                onEdit={handleSaveEdit} // Ensure updatedTasks is an array
-                            />
-                        ))}
-                    </div>
-
-                    <div className={styles.generatedButtonContainer}>
-                        <div className={styles.generatedButton} onClick={() => setEditButton(false)}>
-                            <span className={`${styles.tooltip} ${styles.tooltipC}`}>Cancel</span>
-                            <svg className={styles.cancel} width="35" height="35" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
-                                <path d="m27.461 22.5c-1.2656 0-2.5352 0.48438-3.5039 1.457-1.9414 1.9414-1.9414 5.0703 0 7.0117l19.031 19.031-19.031 19.035c-1.9414 1.9414-1.9414 5.0664 0 7.0078 1.9414 1.9414 5.0703 1.9414 7.0117 0l19.031-19.031 19.031 19.031c1.9414 1.9414 5.0703 1.9414 7.0117 0 1.9414-1.9414 1.9414-5.0664 0-7.0078l-19.031-19.035 19.031-19.031c1.9414-1.9414 1.9414-5.0703 0-7.0117-1.9414-1.9414-5.0703-1.9414-7.0117 0l-19.031 19.031-19.031-19.031c-0.97266-0.97266-2.2383-1.457-3.5039-1.457z"/>
-                            </svg>
-                        </div>
-                        }
-                        size="normal"
-                    />)}
-
                     {editButton && (<DashboardBento
                         name="Edit"
                         content={<div>
                             <div className={styles.editTasksContainer}>
                                 {Object.entries(result).map(([name, tasks]) => (
-                                    <EditUser key={name} name={name} tasks={tasks}/>
+                                    <EditUser
+                                        key={name}
+                                        name={name}
+                                        tasks={editedTasks[name] || tasks}
+                                        onEdit={handleSaveEdit}
+                                    />
                                 ))}
                             </div>
 

@@ -78,23 +78,16 @@ app.post('/tasks', async (req, res) => {
     }
 });
 
-// POST endpoint to receive result
-// Backend route in index.js or your backend server file
-app.post('/tasks', async (req, res) => {
+app.get("/all_tasks", async (req, res) => {
   try {
-      console.log("Received task data:", req.body); // Log incoming data
-      if (!req.body || Object.keys(req.body).length === 0) {
-          return res.status(400).json({ error: "No data provided" });
-      }
-      await insertTasks(req.body); // Insert tasks into Firestore
-
-      res.status(201).json({ message: 'Tasks added successfully' });
+      const allTasks = await getMembersTasks();
+      console.log(allTasks); // Log to verify data is returned correctly
+      res.json(allTasks); // Send tasks directly as JSON
   } catch (error) {
-      console.error('Error in /tasks route:', error); // Log the full error
-      res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Error:', error.message);
+      res.status(500).send('Error fetching tasks from Firestore');
   }
 });
-
 
 app.listen(port, () => {
   console.log("Server is listening on port:", port);
