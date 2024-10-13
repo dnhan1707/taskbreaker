@@ -3,6 +3,7 @@ import styles from './Dashboard.module.css';
 import PromptedUser from "./PromptedUser.js";
 import DashboardBento from './DashboardBento.js';
 import loadingGif from '../images/loading.gif';
+import EditUser from './EditUser.js';
 
 const Dashboard = () => {
     const [textInput, setTextInput] = useState("");
@@ -11,6 +12,7 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
     const [regenerateButton, setRegenerateButton] = useState(false);
+    const [editButton, setEditButton] = useState(false);
 
     const fetchKindo = async (user_prompt_text) => {
         setLoading(true);
@@ -50,7 +52,8 @@ const Dashboard = () => {
     };
 
     function handleRegenerate(){
-        setRegenerateButton(true)
+        setEditButton(false);
+        setRegenerateButton(true);
         fetchKindo(currentPrompt);
 
     }
@@ -98,28 +101,29 @@ const Dashboard = () => {
                                 </svg>
                             </div>
 
-                            <div className={styles.generatedButton}>
+                            {!editButton && (<div className={styles.generatedButton} onClick={() => setEditButton(true)}>
                                 <span className={`${styles.tooltip} ${styles.tooltipE}`}>Edit</span>
                                 <svg className={styles.edit} width="26" height="26" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 100 125">
                                     <path d="M82.6,2c-4,0-8,1.6-10.8,4.4L56.4,22H14C7.4,22,2,27.4,2,34v52c0,6.6,5.4,12,12,12h52c6.6,0,12-5.4,12-12V43.6L93.6,28  c6-6,6-15.6,0-21.6C90.6,3.6,86.8,2,82.6,2z M70,86c0,2.2-1.8,4-4,4H14c-2.2,0-4-1.8-4-4V34c0-2.2,1.8-4,4-4h34.4L34.6,43.8  c-8,8-12.6,18.8-12.4,30.2l0,0c0,2.2,1.8,4,4,4l0,0c11.4,0,22.2-4.4,30.2-12.4l13.8-13.8V86H70z M87.8,22.4L50.4,59.8  c-5.4,5.4-12.6,9-20.2,9.8c1-7.6,4.4-14.8,9.8-20.2L77.4,12c3-2.8,7.6-2.4,10.4,0.4C90.4,15.4,90.4,19.6,87.8,22.4z"/>
                                 </svg>
-                            </div>
+                            </div>)}
 
-                            <div className={styles.generatedButton}>
+                            {!editButton && (<div className={styles.generatedButton}>
                                 <span className={`${styles.tooltip} ${styles.tooltipS}`}>Submit</span>
                                 <svg className={styles.submit} width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20" x="0px" y="0px">
                                     <g fill="none" fill-rule="evenodd">
                                     <path d="m5.056 15.04c.629.622 1.658.567 2.217-.119l10.17-12.476c.523-.642.427-1.587-.215-2.11-.642-.523-1.587-.427-2.11.215l-9.111 11.208-3.453-3.41c-.589-.583-1.539-.577-2.121.012-.583.589-.577 1.539.012 2.121l4.611 4.56" fill="#000"/>
                                     </g>
                                 </svg>
-                            </div>
+                            </div>)}
                         </div>)}
                     </div>
                 </div>  
                 }
+                size="normal"
             />
 
-            {showPreview && (<DashboardBento
+            {showPreview && !editButton && (<DashboardBento
                 name="Preview"
                 content={<div>
                     {loading && (<div className={styles.loadingContainer}>
@@ -133,7 +137,40 @@ const Dashboard = () => {
                     </div>)}
                 </div>
                 }
+                size="normal"
             />)}
+
+            {editButton && (<DashboardBento
+                name="Edit"
+                content={<div>
+                    <div className={styles.editTasksContainer}>
+                        {Object.entries(result).map(([name, tasks]) => (
+                            <EditUser key={name} name={name} tasks={tasks}/>
+                        ))}
+                    </div>
+
+                    <div className={styles.generatedButtonContainer}>
+                        <div className={styles.generatedButton} onClick={() => setEditButton(false)}>
+                            <span className={`${styles.tooltip} ${styles.tooltipC}`}>Cancel</span>
+                            <svg className={styles.cancel} width="35" height="35" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
+                                <path d="m27.461 22.5c-1.2656 0-2.5352 0.48438-3.5039 1.457-1.9414 1.9414-1.9414 5.0703 0 7.0117l19.031 19.031-19.031 19.035c-1.9414 1.9414-1.9414 5.0664 0 7.0078 1.9414 1.9414 5.0703 1.9414 7.0117 0l19.031-19.031 19.031 19.031c1.9414 1.9414 5.0703 1.9414 7.0117 0 1.9414-1.9414 1.9414-5.0664 0-7.0078l-19.031-19.035 19.031-19.031c1.9414-1.9414 1.9414-5.0703 0-7.0117-1.9414-1.9414-5.0703-1.9414-7.0117 0l-19.031 19.031-19.031-19.031c-0.97266-0.97266-2.2383-1.457-3.5039-1.457z"/>
+                            </svg>
+                        </div>
+
+                        <div className={styles.generatedButton}>
+                            <span className={`${styles.tooltip} ${styles.tooltipS}`}>Submit</span>
+                            <svg className={styles.submit} width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20" x="0px" y="0px">
+                                <g fill="none" fill-rule="evenodd">
+                                <path d="m5.056 15.04c.629.622 1.658.567 2.217-.119l10.17-12.476c.523-.642.427-1.587-.215-2.11-.642-.523-1.587-.427-2.11.215l-9.111 11.208-3.453-3.41c-.589-.583-1.539-.577-2.121.012-.583.589-.577 1.539.012 2.121l4.611 4.56" fill="#000"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                }
+                size="wide"
+            />)}
+
         </div>
     );
 };

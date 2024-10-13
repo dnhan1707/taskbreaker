@@ -90,12 +90,16 @@
 
 .tooltipS {
     margin-left: -6px;
+}
+
+.tooltipC {
+    margin-left: -6px;
     
 }
 
 .generatedButton:hover .tooltip {
-    visibility: visible; /* Show the tooltip on hover */
-    opacity: 1; /* Make it visible */
+    visibility: visible;
+    opacity: 1;
 }
 
 .regenerate {
@@ -109,7 +113,11 @@
 
 .submit {
     margin-left: 7px;
-    margin-top: 8px;
+    margin-top: 9px;
+}
+
+.cancel {
+    margin-top: 1px;
 }
 
 .loadingContainer {
@@ -143,4 +151,14 @@
     align-items: center;
     justify-content: center;
     column-gap: 20px;
+}
+
+.editTasksContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    column-gap: 20px;
+    padding-inline: 20px;
 }

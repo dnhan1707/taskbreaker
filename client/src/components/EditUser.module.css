@@ -1,35 +1,36 @@
-.promptedUser {
-    /* background-color: rgba(0, 0, 0, .02); */
+.editUser {
     border: solid #DDD .5px;
     background-color: #fafafa;
-    width: 150px;
-    height: 150px;
+    width: 360px;
+    height: max-content;
     border-radius: 25px;
 
     padding-inline: 20px;
     padding-block: 1px;
 
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 .name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 
-ol {
+ul {
     margin-top: -5px;
-    padding-left: 15px;
+    padding-left: 5px;
     margin-left: 0;
     color: #777;
+    list-style-type: none;
 }
 
 .task {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 300;
+    margin-bottom: 15px;
 }
 
 .task p {
-    margin-block: 0px;
+    margin-block: 5px;
     color: #777;
 }
