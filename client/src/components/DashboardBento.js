@@ -58,6 +58,15 @@ const DashboardBento = ({name, content, size}) => {
         );
     }
 
+    if(size == "wideEdit"){
+        return (
+            <div className={styles.dashboardBentoWideEdit}>
+                <h3 className={styles.name}>{name}</h3>
+                {content}
+            </div>
+        );
+    }
+
     if(size == "normalTasks"){
         return (
             <div className={styles.dashboardBentoNormalTasks}>
