@@ -7,6 +7,7 @@ import user_prompt from "./prompt.js";
 import getMembersTasks from './getDataDashboard.js';
 
 import insertTasks from './InsertTasks.js';
+import deletethis from './deletethis.js';
 
 dotenv.config();
 
@@ -86,6 +87,21 @@ app.get("/all_tasks", async (req, res) => {
   } catch (error) {
       console.error('Error:', error.message);
       res.status(500).send('Error fetching tasks from Firestore');
+  }
+});
+
+// Delete task route
+app.delete('/delete_task', async (req, res) => {
+
+  const {task} = req.body;
+  
+  try {
+
+      const deleted_this = await deletethis(task);
+      
+      res.status(200).send({ message: `Task deleted.` });
+  } catch (error) {
+      res.status(500).send({ error: 'Failed to delete task.' });
   }
 });
 
