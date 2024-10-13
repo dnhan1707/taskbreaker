@@ -48,6 +48,15 @@ const DashboardBento = ({name, content, size}) => {
             </div>
         );
     }
+
+    if(size == "ultraWide"){
+        return (
+            <div className={styles.dashboardBentoUltraWide}>
+                <h3 className={styles.name}>{name}</h3>
+                {content}
+            </div>
+        );
+    }
     
 };
 

@@ -2,6 +2,11 @@
     padding-inline: 50px;
 }
 
+.taskFlowAI {
+    font-weight: 400;
+    color: #777;
+}
+
 .dashboardContainer {
     display: flex;
     flex-direction: row;

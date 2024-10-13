@@ -113,7 +113,7 @@ const Dashboard = () => {
 
     return (
         <div className={styles.dashboard}>
-            <h2>Dashboard</h2>
+            <h2>Dashboard <span className={styles.taskFlowAI}>| TaskFlow AI</span></h2>
 
             <div className={styles.dashboardContainer}>
                 <div>
@@ -199,7 +199,7 @@ const Dashboard = () => {
                         size="normal"
                     />
 
-            {showPreview && !editButton && (<DashboardBento
+                    {showPreview && !editButton && (<DashboardBento
                         name="Preview"
                         content={<div>
                             {loading && (<div className={styles.loadingContainer}>
