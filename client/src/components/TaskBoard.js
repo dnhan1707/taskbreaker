@@ -1,13 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from './TaskBoard.module.css';
 import DashboardBento from './DashboardBento.js';
 import ProgressBar from "./ProgressBar.js";
 import TaskPieChart from "./TaskPieChart.js";
+import usePersistState from "../usePersistState.js";
+import { v4 as uuidv4 } from 'uuid';
 
-function TaskBoard({submitIsClick, title}) {
+
+function TaskBoard({title}) {
     const [data, setData] = useState({});  // Initialize data as an empty object
     const [loading, setLoading] = useState(false); // State for handling loading
-    
+
+    let titleId = localStorage.getItem('currentTitleId');
+
+    if (!titleId) {
+        titleId = uuidv4();
+        localStorage.setItem('currentTitleId', titleId);
+    }    
+    const [persistentTitle, setPersistentTitle] = usePersistState(title, `persistentTitle_${titleId}`);
+    useEffect(() => {
+        if (title) {
+            setPersistentTitle(title);  // Persist title in localStorage
+        }
+    }, [title, setPersistentTitle]);
+
+    useEffect(() => {
+        if (title) {
+            setPersistentTitle(title);  // Persist title in localStorage
+        }
+    }, [title, setPersistentTitle]);
+
     const fetchMemberTasks = async () => {
         try {
             setLoading(true); // Set loading state to true when the request starts
@@ -33,10 +55,12 @@ function TaskBoard({submitIsClick, title}) {
         } finally {
             setLoading(false); // Stop loading once the request is finished
         }
-    };
+    }; // Remove 'data' and 'loading' from dependencies
+
     useEffect(() => {
         fetchMemberTasks();
-    }, [submitIsClick])
+    }, []); // Fetch on mount
+
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -52,8 +76,8 @@ function TaskBoard({submitIsClick, title}) {
             <DashboardBento
                 name="Project"
                 content={<div className={styles.projectContainer}>
-                    {(title.length > 0) && (<div className={styles.projectNameContainer}>
-                        <p className={styles.projectName}>{title}</p>
+                    {(persistentTitle.length > 0) && (<div className={styles.projectNameContainer}>
+                        <p className={styles.projectName}>{persistentTitle}</p>
                         <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
                             <defs>
                                 <linearGradient id="linearGradient" x1="0%" y1="0%" x2="100%" y2="100%">

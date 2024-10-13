@@ -31,9 +31,9 @@ app.post("/kion", async (req, res) => {
   try {
     const { prompt, is_regenerating } = req.body; // Extract 'prompt' from the request body
     const ai_prompt = await user_prompt(prompt, is_regenerating)
-    console.log(ai_prompt);
+    // console.log(ai_prompt);
     const data = {
-      model: "gemini-1.5-pro",
+      model: "azure/gpt-4-turbo",
       messages: [{ role: "user", content: ai_prompt }], // Use the prompt received from the client
     };
 
