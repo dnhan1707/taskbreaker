@@ -2,8 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import dotenv from 'dotenv';
 
-if(!process.env.REACT_APP_FIREBASE_APIKEY){ 
+dotenv.config();
+
+if(!process.env.FIREBASE_APIKEY){ 
   console.log("NOT FOUND");
  }
  const firebaseConfig = {
