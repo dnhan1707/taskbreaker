@@ -1,4 +1,33 @@
 .dashboard {
     padding-inline: 50px;
-    background-color: grey;
+}
+
+.searchContainer {
+    position: relative;
+    width: 100%;
+}
+
+.searchBar {
+    padding: 15px;
+    border-radius: 25px;
+    width: 365px;
+    border: none;
+    background-color: #e1e1e1;
+    margin-left: 20px;
+}
+
+.searchButton {
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    cursor: pointer;
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 500px;
+}
+
+.searchButton svg {
+    margin-left: 3px;
+    margin-top: 2px;
 }

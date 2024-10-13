@@ -1,0 +1,11 @@
+.dashboardBento {
+    width: 440px;
+    border-radius: 25px;
+    border: solid #DDD 1px;
+    padding-block: 20px;
+}
+
+.name {
+    margin-top: 0px;
+    padding-left: 20px;
+}
