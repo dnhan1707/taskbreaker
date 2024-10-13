@@ -31,7 +31,9 @@ const Dashboard = () => {
             const responseData = await response.json();
             console.log(responseData.result);
             setResult(JSON.parse(responseData.result));
-            console.log(responseData.result); // Log to verify structure
+            
+            console.log("checlll", responseData.result); // Log to verify structure
+
             setLoading(false);
             setRegenerateButton(false);
         } catch (error) {
@@ -40,6 +42,33 @@ const Dashboard = () => {
         }
 
     };
+
+    const fetchTasks = async (TasksData) => {
+        try {
+            
+            const response = await fetch("http://localhost:8080/tasks", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(TasksData), // Stringify the data
+            });
+
+            console.log("what happaning", response);
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // const responseData = await response.json();
+
+            console.log("checkkk", response.body);
+
+        } catch (error) {
+            console.error('Error send tasks:', error);
+        }
+    };
+
 
     function submitPrompt(){
         if(!loading && textInput.trim() !== ''){
@@ -53,6 +82,11 @@ const Dashboard = () => {
         setRegenerateButton(true)
         fetchKindo(currentPrompt);
 
+    }
+
+    function handleSubmit(){
+        console.log("RESULT",result);
+        fetchTasks(result);
     }
 
     return (
@@ -105,7 +139,7 @@ const Dashboard = () => {
                                 </svg>
                             </div>
 
-                            <div className={styles.generatedButton}>
+                            <div className={styles.generatedButton} onClick={handleSubmit}>
                                 <span className={`${styles.tooltip} ${styles.tooltipS}`}>Submit</span>
                                 <svg className={styles.submit} width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20" x="0px" y="0px">
                                     <g fill="none" fill-rule="evenodd">
