@@ -31,8 +31,9 @@ app.post("/kion", async (req, res) => {
   try {
     const { prompt, is_regenerating } = req.body; // Extract 'prompt' from the request body
     const ai_prompt = await user_prompt(prompt, is_regenerating)
+    console.log(ai_prompt);
     const data = {
-      model: "azure/gpt-4o",
+      model: "gemini-1.5-pro",
       messages: [{ role: "user", content: ai_prompt }], // Use the prompt received from the client
     };
 
@@ -52,7 +53,7 @@ app.post("/kion", async (req, res) => {
 
     const responseData = await response.json();
     const result = responseData.choices[0].message.content; // Extract the response content
-    console.log(result)
+    // console.log(result)
 
     res.json({ result }); // Send the result back to the front-end
   } catch (error) {
@@ -82,7 +83,7 @@ app.post('/tasks', async (req, res) => {
 app.get("/all_tasks", async (req, res) => {
   try {
       const allTasks = await getMembersTasks();
-      console.log(allTasks); // Log to verify data is returned correctly
+      // console.log(allTasks); // Log to verify data is returned correctly
       res.json(allTasks); // Send tasks directly as JSON
   } catch (error) {
       console.error('Error:', error.message);

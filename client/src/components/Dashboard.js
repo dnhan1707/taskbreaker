@@ -19,6 +19,7 @@ const Dashboard = () => {
     const [title, setTitle] = useState("");
 
     const fetchKindo = async (user_prompt_text) => {
+        console.log("Prompt: ", user_prompt_text);
         setLoading(true);
         setShowPreview(true);
         try {
@@ -57,9 +58,9 @@ const Dashboard = () => {
 
     function submitPrompt(){
         if(!loading && textInput.trim() !== ''){
+            fetchKindo(textInput);
             setCurrentPrompt(textInput)
             setTextInput("");
-            fetchKindo(currentPrompt);
         }
     };
 
