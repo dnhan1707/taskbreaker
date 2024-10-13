@@ -8,7 +8,7 @@ import user_prompt from "./prompt.js";
 dotenv.config();
 
 const app = express();
-const port = 6000;
+const port = 8080;
 const API_KEY = process.env.API_KEY;
 
 if (!API_KEY) {

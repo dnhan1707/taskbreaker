@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-if(!process.env.REACT_APP_FIREBASE_APIKEY){ 
+if(!process.env.FIREBASE_APIKEY){ 
   console.log("NOT FOUND");
  }
  const firebaseConfig = {
