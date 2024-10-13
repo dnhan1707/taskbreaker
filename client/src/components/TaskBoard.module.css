@@ -1,0 +1,104 @@
+.trelloContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 25px;
+}
+
+.taskBorder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: max-content;
+    margin-left: 15px;
+    padding: 2px;
+    margin-top: 20px;
+    background: linear-gradient(to right, #798cd1, #a886dc);
+    border-radius: 22px;
+}
+
+.task {
+    background-color: white;
+    border: solid #DDD .5px;
+    width: 100%;
+    height: max-content;
+    border-radius: 20px;
+    padding-inline: 10px;
+}
+
+.task:hover .taskHeader svg {
+    display: block;
+}
+
+.taskHeader,
+.taskFooter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.taskHeader p,
+.taskFooter p {
+    font-size: 13px;
+    color: #555;
+}
+
+.taskHeader svg {
+    display: none;
+    cursor: pointer;
+}
+
+.dateContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+.dateContainer p {
+    margin-top: 10px;
+}
+
+.statusContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+
+.statusContainer p {
+    margin-top: 5px;
+}
+
+.tooltipContainer {
+    position: relative; 
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltipText {
+    visibility: hidden;
+    width: max-content; 
+    background-color: #999;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltipContainer:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+}

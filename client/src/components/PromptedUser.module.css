@@ -1,5 +1,5 @@
 .promptedUser {
-    /* background-color: rgba(0, 0, 0, .02); */
+    position: relative;
     border: solid #DDD .5px;
     background-color: #fafafa;
     width: 150px;
@@ -15,6 +15,10 @@
 .name {
     font-size: 14px;
     font-weight: 600;
+
+    background: linear-gradient(90deg, #798cd1, #a886dc);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
 }
 
 ol {
@@ -32,4 +36,14 @@ ol {
 .task p {
     margin-block: 0px;
     color: #777;
+}
+
+.estimateAI {
+    position: absolute;
+    bottom: 10px;
+    font-size: 10px;
+    font-weight: 300;
+    background: linear-gradient(90deg, #5f6ea5, #5f6ea5);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
 }
