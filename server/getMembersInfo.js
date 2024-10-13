@@ -1,31 +1,31 @@
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase/firebase.js';
 
-async function getMembersTasks() {
-    let membersTasks = {}; // Store each member's tasks by their name (document ID)
+async function getMembersListSkill() {
+    let membersSkills = [];
     try {
-        const userCollection = collection(db, "user_tasks");
+        const userCollection = collection(db, "users");
         const snapShot = await getDocs(userCollection);
+        const userList = snapShot.docs.map(user => user.data());
 
-        snapShot.docs.forEach(doc => {
-            const tasks = doc.data(); // Get all task data from the document
-            const memberName = doc.id; // Use the document ID as the member's name
+        if (userList.length === 0) {
+            console.log("Empty");
+        }
 
-            // Add the member's tasks under their name in the membersTasks object
-            membersTasks[memberName] = [];
-
-            // Iterate through each task (e.g., task_1, task_2) and store it in the array
-            Object.keys(tasks).forEach(taskKey => {
-                membersTasks[memberName].push(tasks[taskKey]);
-            });
+        userList.forEach((user) => {
+            const userInfo = {
+                name: user.name,
+                skills: user.skills,
+                interests: user.interests
+            };
+            membersSkills.push(userInfo); // Use push instead of append
         });
-
-        console.log(membersTasks); // For debugging, log the populated task object
-        return membersTasks; // Return the tasks for each member
+        console.log(membersSkills);
+        return membersSkills; // Return the populated array
     } catch (error) {
-        console.error('Error fetching member tasks:', error);
-        return {}; // Return an empty object in case of an error
+        console.error(error);
+        return []; // Return an empty array in case of an error
     }
 }
 
-export default getMembersTasks;
+export default getMembersListSkill;
