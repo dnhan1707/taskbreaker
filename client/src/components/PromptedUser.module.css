@@ -1,8 +1,9 @@
 .promptedUser {
     /* background-color: rgba(0, 0, 0, .02); */
-    border: solid #DDD 1px;
-    width: 300px;
-    height: 120px;
+    border: solid #DDD .5px;
+    background-color: #fafafa;
+    width: 140px;
+    height: 150px;
     border-radius: 25px;
 
     padding-inline: 20px;
@@ -16,14 +17,19 @@
     font-weight: 600;
 }
 
-ul {
-    margin-top: -10px;
-    padding-left: 0;
+ol {
+    margin-top: -5px;
+    padding-left: 15px;
     margin-left: 0;
-    list-style-type: none;
+    color: #777;
 }
 
-li {
+.task {
     font-size: 11px;
     font-weight: 300;
+}
+
+.task p {
+    margin-block: 0px;
+    color: #777;
 }

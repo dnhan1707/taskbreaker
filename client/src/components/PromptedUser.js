@@ -5,9 +5,9 @@ const PromptedUser = ({name, tasks}) => {
     const calculateDaysBetween = (start, end) => {
         const startDate = new Date(start);
         const endDate = new Date(end);
-    
+
         const timeDifference = endDate - startDate;
-    
+
         const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
 
         let output;
@@ -21,20 +21,20 @@ const PromptedUser = ({name, tasks}) => {
         else{
             output = " | " + daysDifference + " days";
         }
-    
+
         return output;
     };
 
     return (
         <div className={styles.promptedUser}>
-            <p className={styles.name}>{name}</p>
-            <ul>
+            <p className={styles.name}>{name}'s Tasks</p>
+            <ol>
                 {tasks.map((task, index) => (
                     <li key={index} className={styles.task}>
                         <p>{task.task} {calculateDaysBetween(task.start_day, task.end_day)}</p>
                     </li>
                 ))}
-            </ul>
+            </ol>
         </div>
     );
 };

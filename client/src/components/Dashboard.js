@@ -122,23 +122,18 @@ const Dashboard = () => {
             {showPreview && (<DashboardBento
                 name="Preview"
                 content={<div>
-                    {loading && (<img src={loadingGif} alt='loading_gif' width="80" height="80"/>)}
+                    {loading && (<div className={styles.loadingContainer}>
+                        <img src={loadingGif} alt='loading_gif' width="80" height="80"/>
+                        <p className={styles.pulsating}>Generating response with AI…</p></div>)}
 
-                    {!loading && showPreview && Object.entries(result).map(([name, tasks]) => (
-                        <PromptedUser key={name} name={name} tasks={tasks} />
-                    ))}
-
-                </div>  
+                    {!loading && showPreview && (<div className={styles.generatedTasksContainer}>
+                        {Object.entries(result).map(([name, tasks]) => (
+                            <PromptedUser key={name} name={name} tasks={tasks.slice(0, 2)}/>
+                        ))}
+                    </div>)}
+                </div>
                 }
             />)}
-
-            {/* <DashboardBento
-                name="Preview"
-                content={<div className={styles.loadingContainer}>
-                    <img src={loadingGif} width="80" height="80"/>
-                </div>  
-                }
-            /> */}
         </div>
     );
 };
