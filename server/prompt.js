@@ -9,7 +9,7 @@ async function user_prompt(task, is_regenerate) {
 
                 If the team member does not need assistance, the string should be "N/A."
 
-                The output should be an object that has the key as the member name, and the value as an array of the task objects. DO NOT GIVE ME AN EXPLANATION, JUST GIVE THE OUTPUT AND NOTHING ELSE. DO NOT WRAP THE JSON CODE IN JSON MARKERS.
+                The output should be an object that has the key as the member name, and the value as an array of the task objects. Also give me the Title for the project and put it in the output too. DO NOT GIVE ME AN EXPLANATION, JUST GIVE THE OUTPUT AND NOTHING ELSE. DO NOT WRAP THE JSON CODE IN JSON MARKERS.
 
                 Task: ${task}
                 Members: ${JSON.stringify(memberSkills)}`;
